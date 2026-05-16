@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthResponse, LoginRequest, RegisterRequest } from '../models/user.model';
 import { ApiResponse } from '../models/api-response.model';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 /**
  * AuthService
@@ -23,7 +24,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private readonly API = 'http://localhost:8081/api/auth';
+  private readonly API = `${environment.apiUrl}/auth`;
   private readonly TOKEN_KEY = 'tms_token';
   private readonly USER_KEY = 'tms_user';
 

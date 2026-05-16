@@ -6,13 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../models/api-response.model';
 import { TravelRequest, TravelRequestForm, ApprovalAction, Expense } from '../models/travel-request.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TravelRequestService {
 
-  private readonly API = 'http://localhost:8081/api';
+  private readonly API = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

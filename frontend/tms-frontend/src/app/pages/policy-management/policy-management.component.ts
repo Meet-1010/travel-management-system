@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-policy-management',
@@ -105,7 +106,7 @@ export class PolicyManagementComponent implements OnInit {
 
   loadPolicies() {
     this.loading = true;
-    this.http.get<any>('http://localhost:8081/api/policies').subscribe({
+    this.http.get<any>(`${environment.apiUrl}/policies`).subscribe({
       next: (res) => {
         if (res.success) this.policies = res.data;
         this.loading = false;
@@ -117,7 +118,7 @@ export class PolicyManagementComponent implements OnInit {
   createPolicy() {
     if (!this.newPolicy.policyName) return;
     this.loading = true;
-    this.http.post<any>('http://localhost:8081/api/policies', this.newPolicy).subscribe({
+    this.http.post<any>(`${environment.apiUrl}/policies`, this.newPolicy).subscribe({
       next: () => {
         this.loadPolicies();
         this.newPolicy.policyName = '';
@@ -129,6 +130,6 @@ export class PolicyManagementComponent implements OnInit {
 
   deletePolicy(id: number) {
     if(!confirm("Delete this policy?")) return;
-    this.http.delete(`http://localhost:8081/api/policies/${id}`).subscribe(() => this.loadPolicies());
+    this.http.delete(`${environment.apiUrl}/policies/${id}`).subscribe(() => this.loadPolicies());
   }
 }

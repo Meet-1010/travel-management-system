@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { TravelRequestService } from '../../services/travel-request.service';
 import { TravelRequest } from '../../models/travel-request.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-itinerary',
@@ -112,7 +113,7 @@ export class ItineraryComponent implements OnInit {
 
   loadItinerary(id: number) {
     this.loading = true;
-    this.http.get<any>(`http://localhost:8081/api/itineraries/${id}`).subscribe({
+    this.http.get<any>(`${environment.apiUrl}/itineraries/${id}`).subscribe({
       next: (res) => {
         if(res.success) this.items = res.data;
         this.loading = false;
@@ -128,7 +129,7 @@ export class ItineraryComponent implements OnInit {
        requestId: this.request!.id,
        ...this.newItem
     };
-    this.http.post<any>('http://localhost:8081/api/itineraries', payload).subscribe({
+    this.http.post<any>(`${environment.apiUrl}/itineraries`, payload).subscribe({
        next: (res) => {
           if(res.success) {
              this.items.push(res.data);
@@ -144,7 +145,7 @@ export class ItineraryComponent implements OnInit {
 
   deleteItem(id: number) {
     if(!confirm("Delete this segment?")) return;
-    this.http.delete(`http://localhost:8081/api/itineraries/${id}`).subscribe(() => {
+    this.http.delete(`${environment.apiUrl}/itineraries/${id}`).subscribe(() => {
        this.items = this.items.filter(i => i.id !== id);
     });
   }
