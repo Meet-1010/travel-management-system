@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: '/api' // Or put the full Render backend URL here
+  apiUrl: 'https://tms-backend-vx7l.onrender.com/api'
 };
