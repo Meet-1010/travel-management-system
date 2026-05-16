@@ -44,13 +44,6 @@ import { AuthService } from '../../services/auth.service';
             <p class="hero-sub">Manage requests, approvals, and expenses — all in one streamlined platform.</p>
           </div>
 
-          <div class="hero-stats">
-            <div class="h-stat"><div class="h-stat-val">500+</div><div class="h-stat-label">Requests Managed</div></div>
-            <div class="h-divider"></div>
-            <div class="h-stat"><div class="h-stat-val">4</div><div class="h-stat-label">User Roles</div></div>
-            <div class="h-divider"></div>
-            <div class="h-stat"><div class="h-stat-val">100%</div><div class="h-stat-label">Paperless</div></div>
-          </div>
         </div>
       </div>
 
@@ -164,17 +157,6 @@ import { AuthService } from '../../services/auth.service';
       margin-bottom: 2.5rem;
     }
 
-    .hero-stats {
-      display: flex; align-items: center; gap: 1.5rem;
-      padding: 1.25rem 1.75rem;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-    }
-    .h-stat { text-align: center; }
-    .h-stat-val { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: #ff5c22; }
-    .h-stat-label { font-size: 0.7rem; color: #505050; margin-top: 2px; }
-    .h-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.07); }
 
     /* --- RIGHT PANEL --- */
     .login-right {
