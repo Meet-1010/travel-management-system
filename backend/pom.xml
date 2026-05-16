@@ -13,7 +13,7 @@
 
   <groupId>com.tms</groupId>
   <artifactId>travel-management-system</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <name>Travel Management System</name>
   <description>Corporate Travel Management System - Backend API</description>
 

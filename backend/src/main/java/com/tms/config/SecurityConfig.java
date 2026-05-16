@@ -59,14 +59,11 @@ public class SecurityConfig {
             // Disable CSRF - not needed for JWT REST APIs
             .csrf(AbstractHttpConfigurer::disable)
 
-            // Configure CORS
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            // Disable Spring Security's built-in CORS as we are using SimpleCorsFilter
+            .cors(AbstractHttpConfigurer::disable)
 
             // Configure which endpoints are public vs protected
             .authorizeHttpRequests(auth -> auth
-                // Allow ALL preflight OPTIONS requests - must be first!
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
                 // Public endpoints - anyone can call these
                 .requestMatchers("/api/auth/**").permitAll()
 
@@ -115,27 +112,5 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
-    }
-
-    /**
-     * CORS config: Allows Angular dev server to talk to Spring Boot.
-     * In production: change to your actual domain.
-     */
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        
-        // Exact matching is the ONLY 100% reliable way to do CORS with credentials in production
-        config.setAllowedOrigins(List.of(allowedOrigins.split(",")));
-        
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setExposedHeaders(List.of("Authorization"));
-        config.setAllowCredentials(true);
-        config.setMaxAge(3600L);
-        
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
     }
 }

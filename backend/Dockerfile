@@ -2,7 +2,7 @@
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY pom.xml .
-# Force cache bust: v1.0.2
+# Force cache bust: v1.0.3
 COPY src ./src
 RUN mvn clean package -DskipTests
 
