@@ -13,14 +13,14 @@ import { AuthService } from '../../services/auth.service';
   template: `
     <div>
       <div class="page-header">
-        <h1>👥 User Management</h1>
+        <h1>User Management</h1>
         <p>Manage system users, roles and departments.</p>
       </div>
 
       <div class="grid-2">
         <!-- Create User Form -->
         <div class="card">
-          <h3 class="mb-2">➕ Create New User</h3>
+          <h3 class="mb-2">Create New User</h3>
           <form (ngSubmit)="createUser()">
             <div class="form-group">
               <label>Full Name</label>
@@ -38,10 +38,10 @@ import { AuthService } from '../../services/auth.service';
               <label>Role</label>
               <select class="form-control" [(ngModel)]="form.role" name="role" required>
                 <option value="">Select role</option>
-                <option value="EMPLOYEE">👤 Employee</option>
-                <option value="MANAGER">👔 Manager</option>
-                <option value="FINANCE">💼 Finance Manager</option>
-                <option value="ADMIN">🛡️ Admin</option>
+                <option value="EMPLOYEE">Employee</option>
+                <option value="MANAGER">Manager</option>
+                <option value="FINANCE">Finance Manager</option>
+                <option value="ADMIN">Admin</option>
               </select>
             </div>
             <div class="form-group">
@@ -53,14 +53,14 @@ import { AuthService } from '../../services/auth.service';
             <div *ngIf="success" class="alert alert-success">{{ success }}</div>
 
             <button type="submit" class="btn btn-primary" [disabled]="creating">
-              {{ creating ? '⏳ Creating...' : '➕ Create User' }}
+              {{ creating ? '⏳ Creating...' : 'Create User' }}
             </button>
           </form>
         </div>
 
         <!-- User List -->
         <div class="card">
-          <h3 class="mb-2">👥 All Users</h3>
+          <h3 class="mb-2">All Users</h3>
           <div *ngIf="loadingUsers" class="spinner" style="margin: 1rem auto;"></div>
           <div class="user-list" *ngIf="!loadingUsers">
             <div *ngFor="let user of users" class="user-item">
@@ -116,7 +116,7 @@ export class UserManagementComponent implements OnInit {
     this.authService.register(this.form as any).subscribe({
       next: res => {
         if (res.success) {
-          this.success = `✅ User ${this.form.name} created!`;
+          this.success = `User ${this.form.name} created!`;
           this.form = { name: '', email: '', password: '', role: '', department: '' };
           this.loadUsers();
         }

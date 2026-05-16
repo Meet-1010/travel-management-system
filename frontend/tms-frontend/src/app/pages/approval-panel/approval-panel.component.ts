@@ -22,26 +22,26 @@ import { TravelRequest } from '../../models/travel-request.model';
 
       <!-- Workflow Diagram -->
       <div class="workflow-banner">
-        <div class="wf-step" [class.active]="true">📝 Employee/Manager Submits</div>
+        <div class="wf-step" [class.active]="true">Employee/Manager Submits</div>
         <div class="wf-arrow">→</div>
-        <div class="wf-step" [class.active]="auth.isManager">✅ Manager Approves</div>
+        <div class="wf-step" [class.active]="auth.isManager">Manager Approves</div>
         <div class="wf-arrow">→</div>
-        <div class="wf-step" [class.active]="auth.isFinance">💼 Finance Approves</div>
+        <div class="wf-step" [class.active]="auth.isFinance">Finance Approves</div>
         <div class="wf-arrow">→</div>
-        <div class="wf-step">🎉 Approved</div>
+        <div class="wf-step">Approved</div>
       </div>
 
       <!-- Manager Queue -->
       <div *ngIf="auth.isManager || auth.isAdmin">
         <div class="queue-header">
-          <h3>🔵 Manager Queue <span class="count-badge">{{ managerQueue.length }}</span></h3>
+          <h3>Manager Queue <span class="count-badge">{{ managerQueue.length }}</span></h3>
           <p class="text-muted">SUBMITTED requests waiting for your approval</p>
         </div>
 
         <div *ngIf="loadingManager" class="spinner"></div>
 
         <div *ngIf="!loadingManager && managerQueue.length === 0" class="empty-state">
-          <div class="empty-icon">🎉</div>
+          <div class="empty-icon"></div>
           <p>No pending requests in your queue</p>
         </div>
 
@@ -55,14 +55,14 @@ import { TravelRequest } from '../../models/travel-request.model';
       <!-- Finance Queue -->
       <div [class.mt-3]="auth.isAdmin" *ngIf="auth.isFinance || auth.isAdmin">
         <div class="queue-header">
-          <h3>🟡 Finance Queue <span class="count-badge finance">{{ financeQueue.length }}</span></h3>
+          <h3>Finance Queue <span class="count-badge finance">{{ financeQueue.length }}</span></h3>
           <p class="text-muted">MANAGER_APPROVED requests waiting for final Finance approval</p>
         </div>
 
         <div *ngIf="loadingFinance" class="spinner"></div>
 
         <div *ngIf="!loadingFinance && financeQueue.length === 0" class="empty-state">
-          <div class="empty-icon">🎉</div>
+          <div class="empty-icon"></div>
           <p>No pending requests in Finance queue</p>
         </div>
 
@@ -77,7 +77,7 @@ import { TravelRequest } from '../../models/travel-request.model';
       <ng-template #requestCard let-req="req" let-queueType="queueType">
         <div class="ap-header">
           <div>
-            <h4>✈️ {{ req.destination }}</h4>
+            <h4>{{ req.destination }}</h4>
             <div class="text-muted" style="font-size: 0.8rem">
               Request #{{ req.id }} • by {{ req.employeeName }}
             </div>
@@ -89,22 +89,22 @@ import { TravelRequest } from '../../models/travel-request.model';
 
         <div class="ap-info">
           <div class="info-row">
-            <span>👤 Submitted by:</span>
+            <span>Submitted by:</span>
             <strong>{{ req.employeeName }} ({{ req.department || 'N/A' }})</strong>
           </div>
           <div class="info-row">
-            <span>📅 Travel:</span>
+            <span>Travel:</span>
             <strong>{{ req.startDate | date:'MMM d' }} → {{ req.endDate | date:'MMM d, y' }}</strong>
           </div>
           <div class="info-row">
-            <span>💰 Budget:</span>
+            <span>Budget:</span>
             <strong [class.over-budget]="req.budget > 50000">
               ₹{{ req.budget | number }}
-              <span *ngIf="req.budget > 50000" class="badge badge-rejected" style="font-size:0.65rem; padding: 2px 6px">⚠️ Over Policy</span>
+              <span *ngIf="req.budget > 50000" class="badge badge-rejected" style="font-size:0.65rem; padding: 2px 6px">Over Policy</span>
             </strong>
           </div>
           <div class="info-row">
-            <span>📝 Purpose:</span>
+            <span>Purpose:</span>
             <span class="text-muted">{{ req.purpose | slice:0:80 }}{{ req.purpose.length > 80 ? '...' : '' }}</span>
           </div>
         </div>
@@ -116,11 +116,11 @@ import { TravelRequest } from '../../models/travel-request.model';
           <div class="flex gap-1 mt-1">
             <button class="btn btn-success" (click)="decide(req.id, 'APPROVED', queueType)"
                     [disabled]="getState(req.id, queueType).loading">
-              {{ getState(req.id, queueType).loading ? '⏳' : '✅' }} Approve
+              {{ getState(req.id, queueType).loading ? '⏳' : '' }} Approve
             </button>
             <button class="btn btn-danger" (click)="decide(req.id, 'REJECTED', queueType)"
                     [disabled]="getState(req.id, queueType).loading">
-              {{ getState(req.id, queueType).loading ? '⏳' : '❌' }} Reject
+              {{ getState(req.id, queueType).loading ? '⏳' : '' }} Reject
             </button>
           </div>
         </div>
@@ -128,7 +128,7 @@ import { TravelRequest } from '../../models/travel-request.model';
         <!-- Done state -->
         <div *ngIf="getState(req.id, queueType).done" class="alert mt-1"
              [class]="getState(req.id, queueType).result === 'APPROVED' ? 'alert-success' : 'alert-error'">
-          {{ getState(req.id, queueType).result === 'APPROVED' ? '✅ Approved!' : '❌ Rejected!' }}
+          {{ getState(req.id, queueType).result === 'APPROVED' ? 'Approved!' : 'Rejected!' }}
         </div>
 
         <!-- Error state -->
@@ -194,9 +194,9 @@ export class ApprovalPanelComponent implements OnInit {
   constructor(public auth: AuthService, private requestService: TravelRequestService) {}
 
   get panelTitle(): string {
-    if (this.auth.isManager) return '🔵 Manager Approval Panel';
-    if (this.auth.isFinance) return '💼 Finance Approval Panel';
-    return '⚙️ Admin — Full Approval Panel';
+    if (this.auth.isManager) return 'Manager Approval Panel';
+    if (this.auth.isFinance) return 'Finance Approval Panel';
+    return 'Admin — Full Approval Panel';
   }
 
   get panelSubtitle(): string {

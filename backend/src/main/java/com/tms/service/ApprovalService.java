@@ -118,7 +118,7 @@ public class ApprovalService {
         requestRepository.save(request);
 
         // Audit log
-        String action = (dto.getStatus() == Approval.Status.APPROVED ? "✅ APPROVED" : "❌ REJECTED");
+        String action = (dto.getStatus() == Approval.Status.APPROVED ? "APPROVED" : "REJECTED");
         auditLogRepository.save(AuditLog.builder()
                 .action("Request #" + request.getId() + " " + action
                         + " by " + approver.getName() + " [" + approverRole + ", Level " + level + "]"

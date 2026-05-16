@@ -16,10 +16,10 @@ import { AuthService } from '../../services/auth.service';
     <div>
       <div class="page-header flex-between">
         <div>
-          <h1>🧳 My Travel Requests</h1>
+          <h1>My Travel Requests</h1>
           <p>Track all your travel requests and their approval status.</p>
         </div>
-        <a routerLink="/travel-requests/new" class="btn btn-primary">➕ New Request</a>
+        <a routerLink="/travel-requests/new" class="btn btn-primary">New Request</a>
       </div>
 
       <!-- Filter badges -->
@@ -33,7 +33,7 @@ import { AuthService } from '../../services/auth.service';
       <div *ngIf="loading" class="spinner"></div>
 
       <div *ngIf="!loading && filtered.length === 0" class="card text-center" style="padding: 3rem">
-        <div style="font-size: 3rem; margin-bottom: 1rem">🧳</div>
+        <div style="font-size: 3rem; margin-bottom: 1rem"></div>
         <h3>No requests found</h3>
         <p class="text-muted mt-1">Create your first travel request to get started.</p>
         <a routerLink="/travel-requests/new" class="btn btn-primary mt-2">Create Request</a>
@@ -43,7 +43,7 @@ import { AuthService } from '../../services/auth.service';
         <div class="request-card card" *ngFor="let req of filtered">
           <div class="req-header">
             <div>
-              <h4>✈️ {{ req.destination }}</h4>
+              <h4>{{ req.destination }}</h4>
               <div class="text-muted" style="font-size: 0.8rem">Request #{{ req.id }}</div>
             </div>
             <span class="badge" [class]="'badge-' + req.status.toLowerCase()">
@@ -53,32 +53,32 @@ import { AuthService } from '../../services/auth.service';
 
           <div class="req-details">
             <div class="req-detail">
-              <span class="det-icon">📅</span>
+              <span class="det-icon"></span>
               <span>{{ req.startDate | date:'MMM d' }} → {{ req.endDate | date:'MMM d, y' }}</span>
             </div>
             <div class="req-detail">
-              <span class="det-icon">💰</span>
+              <span class="det-icon"></span>
               <span>Budget: ₹{{ req.budget | number }}</span>
             </div>
             <div class="req-detail" *ngIf="req.totalExpenses > 0">
-              <span class="det-icon">🧾</span>
+              <span class="det-icon"></span>
               <span>Expenses: ₹{{ req.totalExpenses | number }}</span>
             </div>
             <div class="req-detail">
-              <span class="det-icon">📝</span>
+              <span class="det-icon"></span>
               <span>{{ req.purpose | slice:0:60 }}{{ req.purpose.length > 60 ? '...' : '' }}</span>
             </div>
           </div>
 
           <div class="req-actions">
             <a [routerLink]="['/itinerary', req.id]" class="btn btn-secondary btn-sm">
-              🗺️ Itinerary
+              Itinerary
             </a>
             <a [routerLink]="['/expenses', req.id]" class="btn btn-secondary btn-sm">
-              🧾 Expenses
+              Expenses
             </a>
             <button *ngIf="req.status === 'DRAFT'" class="btn btn-primary btn-sm" (click)="submit(req.id)">
-              📤 Submit
+              Submit
             </button>
           </div>
         </div>

@@ -14,7 +14,7 @@ import { TravelRequestService } from '../../services/travel-request.service';
   template: `
     <div style="max-width: 720px; margin: 0 auto;">
       <div class="page-header">
-        <h1>🧳 New Travel Request</h1>
+        <h1>New Travel Request</h1>
         <p>Fill in the details below to create a travel request. Save as draft or submit immediately.</p>
       </div>
 
@@ -22,12 +22,12 @@ import { TravelRequestService } from '../../services/travel-request.service';
         <form (ngSubmit)="submit(false)">
           <div class="grid-2">
             <div class="form-group">
-              <label>📍 Destination *</label>
+              <label>Destination *</label>
               <input type="text" class="form-control" [(ngModel)]="form.destination" name="destination"
                      placeholder="e.g., Mumbai, New York" required>
             </div>
             <div class="form-group">
-              <label>💰 Estimated Budget (₹) *</label>
+              <label>Estimated Budget (₹) *</label>
               <input type="number" class="form-control" [(ngModel)]="form.budget" name="budget"
                      placeholder="e.g., 25000" min="1" required>
             </div>
@@ -35,17 +35,17 @@ import { TravelRequestService } from '../../services/travel-request.service';
 
           <div class="grid-2">
             <div class="form-group">
-              <label>📅 Start Date *</label>
+              <label>Start Date *</label>
               <input type="date" class="form-control" [(ngModel)]="form.startDate" name="startDate" required>
             </div>
             <div class="form-group">
-              <label>📅 End Date *</label>
+              <label>End Date *</label>
               <input type="date" class="form-control" [(ngModel)]="form.endDate" name="endDate" required>
             </div>
           </div>
 
           <div class="form-group">
-            <label>📝 Purpose of Travel *</label>
+            <label>Purpose of Travel *</label>
             <textarea class="form-control" [(ngModel)]="form.purpose" name="purpose" rows="4"
                       placeholder="Describe the purpose of this travel request in detail..." required></textarea>
           </div>
@@ -60,10 +60,10 @@ import { TravelRequestService } from '../../services/travel-request.service';
 
           <div class="flex gap-2 mt-2">
             <button type="submit" class="btn btn-primary" [disabled]="loading">
-              {{ loading ? '⏳ Submitting...' : '📤 Submit for Approval' }}
+              {{ loading ? '⏳ Submitting...' : 'Submit for Approval' }}
             </button>
             <button type="button" class="btn btn-secondary" (click)="submit(true)" [disabled]="loading">
-              💾 Save as Draft
+              Save as Draft
             </button>
             <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
           </div>
@@ -95,7 +95,7 @@ export class TravelRequestFormComponent {
       next: (res) => {
         if (res.success) {
           if (draftOnly) {
-            this.success = '✅ Draft saved successfully! ID: #' + res.data.id;
+            this.success = 'Draft saved successfully! ID: #' + res.data.id;
             this.loading = false;
           } else {
             // Submit the request after creating

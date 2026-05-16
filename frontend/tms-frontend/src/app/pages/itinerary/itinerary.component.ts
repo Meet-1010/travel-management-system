@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
   template: `
     <div style="max-width: 900px; margin: 0 auto;">
       <div class="page-header">
-        <h1>🗺️ Itinerary Builder</h1>
+        <h1>Itinerary Builder</h1>
         <p *ngIf="request">Request #{{ request.id }} — {{ request.destination }}</p>
       </div>
 
@@ -31,16 +31,16 @@ import { environment } from '../../../environments/environment';
 
       <!-- Add Itinerary Form -->
       <div class="card mb-2" *ngIf="auth.isEmployee || auth.isAdmin">
-        <h3 class="mb-2">➕ Add Travel Segment / Stay</h3>
+        <h3 class="mb-2">Add Travel Segment / Stay</h3>
         <div class="grid-2">
           <div class="form-group">
             <label>Type</label>
             <select class="form-control" [(ngModel)]="newItem.type">
-              <option value="FLIGHT">✈️ Flight</option>
-              <option value="TRAIN">🚆 Train</option>
-              <option value="HOTEL">🏨 Hotel</option>
-              <option value="CAB">🚕 Cab</option>
-              <option value="BUS">🚌 Bus</option>
+              <option value="FLIGHT">Flight</option>
+              <option value="TRAIN">Train</option>
+              <option value="HOTEL">Hotel</option>
+              <option value="CAB">Cab</option>
+              <option value="BUS">Bus</option>
             </select>
           </div>
           <div class="form-group">
@@ -54,7 +54,7 @@ import { environment } from '../../../environments/environment';
         </div>
         
         <button class="btn btn-primary" (click)="addItinerary()" [disabled]="adding">
-          {{ adding ? '⏳ Adding...' : '➕ Add to Itinerary' }}
+          {{ adding ? '⏳ Adding...' : 'Add to Itinerary' }}
         </button>
       </div>
 

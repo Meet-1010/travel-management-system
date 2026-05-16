@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   template: `
     <div style="max-width: 900px; margin: 0 auto;">
       <div class="page-header">
-        <h1>🧾 Expense Management</h1>
+        <h1>Expense Management</h1>
         <p *ngIf="request">Request #{{ request.id }} — {{ request.destination }}</p>
       </div>
 
@@ -36,17 +36,17 @@ import { AuthService } from '../../services/auth.service';
 
       <!-- Add Expense Form (only for APPROVED requests owned by current user) -->
       <div class="card mb-2" *ngIf="request?.status === 'APPROVED' && auth.isEmployee">
-        <h3 class="mb-2">➕ Add Expense</h3>
+        <h3 class="mb-2">Add Expense</h3>
         <div class="grid-2">
           <div class="form-group">
             <label>Category</label>
             <select class="form-control" [(ngModel)]="newExpense.category">
               <option value="">Select category</option>
-              <option value="travel">✈️ Travel (Flights/Train)</option>
-              <option value="accommodation">🏨 Accommodation</option>
-              <option value="food">🍱 Food & Meals</option>
-              <option value="transport">🚕 Local Transport</option>
-              <option value="misc">📦 Miscellaneous</option>
+              <option value="travel">Travel (Flights/Train)</option>
+              <option value="accommodation">Accommodation</option>
+              <option value="food">Food & Meals</option>
+              <option value="transport">Local Transport</option>
+              <option value="misc">Miscellaneous</option>
             </select>
           </div>
           <div class="form-group">
@@ -66,7 +66,7 @@ import { AuthService } from '../../services/auth.service';
         <div *ngIf="expError" class="alert alert-error">{{ expError }}</div>
 
         <button class="btn btn-primary" (click)="addExpense()" [disabled]="addingExpense">
-          {{ addingExpense ? '⏳ Adding...' : '➕ Add Expense' }}
+          {{ addingExpense ? '⏳ Adding...' : 'Add Expense' }}
         </button>
       </div>
 

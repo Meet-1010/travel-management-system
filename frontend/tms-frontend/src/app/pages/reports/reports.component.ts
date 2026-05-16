@@ -13,21 +13,21 @@ import { AuthService } from '../../services/auth.service';
   template: `
     <div>
       <div class="page-header">
-        <h1>📈 Reports & Analytics</h1>
+        <h1>Reports & Analytics</h1>
         <p>Corporate travel spend analytics, department-wise breakdown and audit logs.</p>
       </div>
 
       <!-- Stats -->
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-icon" style="background: rgba(99,102,241,0.15);">📋</div>
+          <div class="stat-icon" style="background: rgba(99,102,241,0.15);"></div>
           <div class="stat-info">
             <div class="value">{{ stats['total'] || 0 }}</div>
             <div class="label">Total Requests</div>
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background: rgba(16,185,129,0.15);">✅</div>
+          <div class="stat-icon" style="background: rgba(16,185,129,0.15);"></div>
           <div class="stat-info">
             <div class="value" style="color: var(--success)">{{ stats['approved'] || 0 }}</div>
             <div class="label">Approved</div>
@@ -41,7 +41,7 @@ import { AuthService } from '../../services/auth.service';
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background: rgba(239,68,68,0.15);">❌</div>
+          <div class="stat-icon" style="background: rgba(239,68,68,0.15);"></div>
           <div class="stat-info">
             <div class="value" style="color: var(--danger)">{{ stats['rejected'] || 0 }}</div>
             <div class="label">Rejected</div>
@@ -52,7 +52,7 @@ import { AuthService } from '../../services/auth.service';
       <div class="grid-2">
         <!-- Department Spend -->
         <div class="card">
-          <h3 class="mb-2">🏢 Department-wise Spend</h3>
+          <h3 class="mb-2">Department-wise Spend</h3>
           <div *ngIf="deptSpendLoading" class="spinner" style="margin: 1rem auto;"></div>
           <div *ngIf="!deptSpendLoading">
             <div *ngIf="deptSpendKeys.length === 0" class="text-muted text-center" style="padding: 1rem">
@@ -72,7 +72,7 @@ import { AuthService } from '../../services/auth.service';
 
         <!-- Audit Logs (Admin only) -->
         <div class="card" *ngIf="auth.isAdmin">
-          <h3 class="mb-2">📜 Recent Audit Logs</h3>
+          <h3 class="mb-2">Recent Audit Logs</h3>
           <div *ngIf="logsLoading" class="spinner" style="margin: 1rem auto;"></div>
           <div class="logs-list" *ngIf="!logsLoading">
             <div *ngIf="auditLogs.length === 0" class="text-muted text-center" style="padding: 1rem">No audit logs yet.</div>

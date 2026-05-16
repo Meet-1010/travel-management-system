@@ -37,7 +37,7 @@ public class DataInitializer implements CommandLineRunner {
 
         // Only seed if no users exist yet
         if (userRepository.count() == 0) {
-            log.info("🌱 Seeding initial users...");
+            log.info("Seeding initial users...");
 
             String defaultPassword = passwordEncoder.encode("admin123");
 
@@ -73,7 +73,7 @@ public class DataInitializer implements CommandLineRunner {
                     .department("Finance")
                     .build());
 
-            log.info("✅ 4 users seeded with password: admin123");
+            log.info("4 users seeded with password: admin123");
         } else {
             log.info("ℹ️ Users already exist — skipping seed.");
         }
@@ -86,7 +86,7 @@ public class DataInitializer implements CommandLineRunner {
                     .allowedClass("economy")
                     .description("Default policy: max budget ₹50,000, economy class only.")
                     .build());
-            log.info("✅ Default travel policy seeded.");
+            log.info("Default travel policy seeded.");
         }
     }
 }

@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
   template: `
     <div class="page-container">
       <div class="page-header">
-        <h1>🛡️ Policy Management</h1>
+        <h1>Policy Management</h1>
         <p>Manage corporate travel policies, budget limits, and allowed classes.</p>
       </div>
 

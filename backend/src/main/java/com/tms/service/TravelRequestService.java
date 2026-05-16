@@ -94,7 +94,7 @@ public class TravelRequestService {
         policyRepository.findAll().forEach(policy -> {
             if (policy.getMaxBudget() != null && request.getBudget() != null) {
                 if (request.getBudget().compareTo(policy.getMaxBudget()) > 0) {
-                    logAction("⚠️ POLICY VIOLATION: Request #" + requestId + " budget ₹" + request.getBudget()
+                    logAction("POLICY VIOLATION: Request #" + requestId + " budget ₹" + request.getBudget()
                             + " exceeds policy limit ₹" + policy.getMaxBudget(),
                             "travel_request", requestId, request.getUser());
                 }

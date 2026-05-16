@@ -1,25 +1,25 @@
-# 📚 Travel Management System — Project Audit Document
+# Travel Management System — Project Audit Document
 
 > **Living document** updated as each component is built.  
 > This explains *what was created*, *why it exists*, and *what role it plays*.
 
 ---
 
-## ✅ BUILD STATUS: COMPLETE (Phase 1–4)
+## BUILD STATUS: COMPLETE (Phase 1–4)
 
 | Phase | Status | Description |
 |-------|--------|-------------|
-| Phase 1: Database | ✅ Done | MySQL schema + seed data |
-| Phase 2: Backend APIs | ✅ Done | Spring Boot REST API |
-| Phase 3: Workflow Engine | ✅ Done | Multi-level approval logic |
-| Phase 4: Frontend UI | ✅ Done | Angular 18 app (builds successfully) |
+| Phase 1: Database | Done | MySQL schema + seed data |
+| Phase 2: Backend APIs | Done | Spring Boot REST API |
+| Phase 3: Workflow Engine | Done | Multi-level approval logic |
+| Phase 4: Frontend UI | Done | Angular 18 app (builds successfully) |
 | Phase 5: Integration | ⏳ Pending | Connect frontend to live backend |
 | Phase 6: Advanced Features | ⏳ Future | AI validation, notifications |
 | Phase 7: Testing & Deployment | ⏳ Future | Unit tests, production build |
 
 ---
 
-## 🗃️ DATABASE (`database/schema.sql`)
+## DATABASE (`database/schema.sql`)
 
 | Table | Purpose |
 |-------|---------|
@@ -43,7 +43,7 @@
 
 ---
 
-## ⚙️ BACKEND (`backend/`)
+## BACKEND (`backend/`)
 
 ### Technology Stack
 - **Java 21** + **Spring Boot 3.2.5**
@@ -169,7 +169,7 @@ GET    /api/reports/employee/{id}       → Employee travel history
 
 ---
 
-## 🌐 FRONTEND (`frontend/tms-frontend/`)
+## FRONTEND (`frontend/tms-frontend/`)
 
 ### Architecture
 
@@ -203,7 +203,7 @@ src/app/
 
 ---
 
-## 🚀 HOW TO RUN
+## HOW TO RUN
 
 ### Step 1: Database
 ```bash
@@ -241,7 +241,7 @@ ng serve
 
 ---
 
-## 🔄 END-TO-END WORKFLOW
+## END-TO-END WORKFLOW
 
 1. **Employee** logs in → Creates travel request → Submits
 2. **Manager** logs in → Approval Panel → Approves with comment
@@ -251,7 +251,7 @@ ng serve
 
 ---
 
-## 🔐 SECURITY SUMMARY
+## SECURITY SUMMARY
 
 | Layer | Mechanism |
 |-------|-----------|

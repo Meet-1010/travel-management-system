@@ -17,6 +17,6 @@ public class TravelManagementSystemApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TravelManagementSystemApplication.class, args);
-        System.out.println("✅ Travel Management System Backend Started on http://localhost:8080");
+        System.out.println("Travel Management System Backend Started on http://localhost:8080");
     }
 }
