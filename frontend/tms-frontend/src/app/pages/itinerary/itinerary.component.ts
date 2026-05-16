@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { TravelRequestService } from '../../services/travel-request.service';
 import { TravelRequest } from '../../models/travel-request.model';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-itinerary',
