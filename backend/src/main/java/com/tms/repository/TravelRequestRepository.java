@@ -36,4 +36,10 @@ public interface TravelRequestRepository extends JpaRepository<TravelRequest, Lo
 
     // Count requests by status for dashboard
     long countByStatus(Status status);
+
+    // Count all requests for a specific user
+    long countByUserId(Long userId);
+
+    // Count requests by user and status
+    long countByUserIdAndStatus(Long userId, Status status);
 }

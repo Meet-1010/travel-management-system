@@ -3,6 +3,7 @@ package com.tms.service;
 import com.tms.dto.response.TravelRequestResponse;
 import com.tms.exception.ResourceNotFoundException;
 import com.tms.model.TravelRequest;
+import com.tms.model.User;
 import com.tms.repository.AuditLogRepository;
 import com.tms.repository.TravelRequestRepository;
 import com.tms.repository.UserRepository;
@@ -33,13 +34,25 @@ public class ReportingService {
     /**
      * Dashboard stats: request counts by status
      */
-    public Map<String, Long> getDashboardStats() {
+    public Map<String, Long> getDashboardStats(User user) {
         Map<String, Long> stats = new HashMap<>();
-        stats.put("total", requestRepository.count());
-        stats.put("draft", requestRepository.countByStatus(TravelRequest.Status.DRAFT));
-        stats.put("submitted", requestRepository.countByStatus(TravelRequest.Status.SUBMITTED));
-        stats.put("approved", requestRepository.countByStatus(TravelRequest.Status.APPROVED));
-        stats.put("rejected", requestRepository.countByStatus(TravelRequest.Status.REJECTED));
+        if (user.getRole() == User.Role.EMPLOYEE) {
+            stats.put("total", requestRepository.countByUserId(user.getId()));
+            stats.put("draft", requestRepository.countByUserIdAndStatus(user.getId(), TravelRequest.Status.DRAFT));
+            long pending = requestRepository.countByUserIdAndStatus(user.getId(), TravelRequest.Status.SUBMITTED)
+                         + requestRepository.countByUserIdAndStatus(user.getId(), TravelRequest.Status.MANAGER_APPROVED);
+            stats.put("submitted", pending);
+            stats.put("approved", requestRepository.countByUserIdAndStatus(user.getId(), TravelRequest.Status.APPROVED));
+            stats.put("rejected", requestRepository.countByUserIdAndStatus(user.getId(), TravelRequest.Status.REJECTED));
+        } else {
+            stats.put("total", requestRepository.count());
+            stats.put("draft", requestRepository.countByStatus(TravelRequest.Status.DRAFT));
+            long pending = requestRepository.countByStatus(TravelRequest.Status.SUBMITTED)
+                         + requestRepository.countByStatus(TravelRequest.Status.MANAGER_APPROVED);
+            stats.put("submitted", pending);
+            stats.put("approved", requestRepository.countByStatus(TravelRequest.Status.APPROVED));
+            stats.put("rejected", requestRepository.countByStatus(TravelRequest.Status.REJECTED));
+        }
         return stats;
     }
 

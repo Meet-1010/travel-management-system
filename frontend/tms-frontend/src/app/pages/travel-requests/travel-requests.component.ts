@@ -110,7 +110,7 @@ export class TravelRequestsComponent implements OnInit {
   filtered: TravelRequest[] = [];
   loading = true;
   activeFilter = 'ALL';
-  filters = ['ALL', 'DRAFT', 'SUBMITTED', 'APPROVED', 'REJECTED'];
+  filters = ['ALL', 'DRAFT', 'SUBMITTED', 'MANAGER_APPROVED', 'APPROVED', 'REJECTED'];
 
   constructor(private requestService: TravelRequestService, public auth: AuthService) {}
 

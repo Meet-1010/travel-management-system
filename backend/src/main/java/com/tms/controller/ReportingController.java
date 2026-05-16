@@ -5,7 +5,10 @@ import com.tms.service.ReportingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import com.tms.model.User;
+import com.tms.repository.UserRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,12 +30,15 @@ import java.util.Map;
 public class ReportingController {
 
     private final ReportingService reportingService;
+    private final UserRepository userRepository;
 
     @GetMapping("/dashboard")
-    @PreAuthorize("hasAnyRole('ADMIN', 'FINANCE', 'MANAGER')")
-    public ResponseEntity<ApiResponse<Map<String, Long>>> getDashboard() {
+    @PreAuthorize("hasAnyRole('ADMIN', 'FINANCE', 'MANAGER', 'EMPLOYEE')")
+    public ResponseEntity<ApiResponse<Map<String, Long>>> getDashboard(Authentication authentication) {
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email).orElseThrow();
         return ResponseEntity.ok(
-                ApiResponse.success("Dashboard stats", reportingService.getDashboardStats()));
+                ApiResponse.success("Dashboard stats", reportingService.getDashboardStats(user)));
     }
 
     @GetMapping("/department-spend")

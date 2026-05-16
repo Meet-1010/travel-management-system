@@ -1,4 +1,5 @@
 com/tms/config/DataInitializer.class
+com/tms/config/SimpleCorsFilter.class
 com/tms/model/TravelRequest.class
 com/tms/repository/UserRepository.class
 com/tms/dto/request/ApprovalRequest.class
